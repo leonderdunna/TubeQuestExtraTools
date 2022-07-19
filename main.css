@@ -1,0 +1,9 @@
+.gesehen{
+transform:translateX(-2cm);
+}
+.gesehen.kanal{
+
+    transform:translateX(3cm) translateY(0);
+    position:absolute;
+    
+}
