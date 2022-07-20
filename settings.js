@@ -274,7 +274,8 @@ window.addEventListener('load', () => {
 
     let sammelnSwitchOptionText = document.createElement('p')
     sammelnSwitchOptionText.classList.add('switch-option-text')
-    sammelnSwitchOptionText.textContent = 'Bei einem fertig angesehenen Video automatisch die Coins einsammeln'
+    sammelnSwitchOptionText.textContent = 
+    'Bei einem fertig angesehenen Video automatisch die Coins einsammeln (Ist ein Video beendet und die Zeit noch nicht um, wird das Video automatisch erneut gespielt)'
 
     let sammelnFormSwitch = document.createElement('div')
     sammelnFormSwitch.classList.add('form-switch')

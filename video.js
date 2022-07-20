@@ -22,6 +22,10 @@ window.addEventListener('load', () => {
             //  console.log(successBtn.style.display)
             if (successBtn.style.display == 'block')
                 successBtn.click()
+
+            if (document.querySelector('div.btn-again-box').style.display != 'none')
+                document.querySelector('span.highlighted.btn-again').click()
+
         }, 5000)
 
 
