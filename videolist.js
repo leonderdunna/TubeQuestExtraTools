@@ -66,6 +66,7 @@ window.addEventListener('load', () => {
         return a.kanalCount -b.kanalCount
     })
     //console.log(kanalList)
+    if(localStorage.getItem('auswählen'))
     location.href= kanalList[0].link
 })
 

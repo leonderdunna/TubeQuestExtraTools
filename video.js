@@ -29,6 +29,11 @@ window.addEventListener('load', () => {
         }, 5000)
 
 
+    if (localStorage.getItem('auswählen'))
+        new Notification('TubeQuest', {
+            body:'Ein neues Video kann nun angesehen werden :)'
+        });
+
     if (wiederholung)
         return
 
