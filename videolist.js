@@ -2,7 +2,7 @@ window.addEventListener('load', () => {
 
     if (localStorage.getItem('boost') === '') {
         let boosted = document.getElementsByClassName('boosted')
-        console.log(boosted)
+   //     console.log(boosted)
         if (boosted.length == 4)
             for (let i = 0; i < 4; i++) {
                 boosted[0].remove()

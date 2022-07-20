@@ -250,12 +250,75 @@ window.addEventListener('load', () => {
     boostFormRow.appendChild(boostFormItem)
     //ENDE EintsllungsItem
 
+
+
+    //BEGINN EinstellungsItem
+    let sammelnFormRow = document.createElement('div')
+    sammelnFormRow.classList.add('form-row')
+
+    let sammelnFormItem = document.createElement('div')
+    sammelnFormItem.classList.add('form-item')
+
+    let sammelnInput = document.createElement('input')
+    sammelnInput.classList.add('testInput')
+    sammelnInput.name = 'testInput'
+    sammelnInput.type = 'hidden'
+    sammelnInput.value = 0 //TODO
+
+    let sammelnSwitchOption = document.createElement('div')
+    sammelnSwitchOption.classList.add('switch-option')
+
+    let sammelnSwitchOptionTitle = document.createElement('p')
+    sammelnSwitchOptionTitle.classList.add('switch-option-title')
+    sammelnSwitchOptionTitle.textContent = 'Automatisch sammeln'
+
+    let sammelnSwitchOptionText = document.createElement('p')
+    sammelnSwitchOptionText.classList.add('switch-option-text')
+    sammelnSwitchOptionText.textContent = 'Bei einem fertig angesehenen Video automatisch die Coins einsammeln'
+
+    let sammelnFormSwitch = document.createElement('div')
+    sammelnFormSwitch.classList.add('form-switch')
+    sammelnFormSwitch.dataField = 'testInput'
+
+    let sammelnFormSwitchButton = document.createElement('div')
+    sammelnFormSwitchButton.classList.add('form-switch-button')
+
+    if(localStorage.getItem('sammeln')==='true')
+        sammelnFormSwitch.classList.add('active')
+
+    sammelnFormSwitch.addEventListener('click',()=>{
+        if(sammelnFormSwitch.classList.contains('active')){
+            sammelnFormSwitch.classList.remove('active')
+            localStorage.setItem('sammeln','')
+            console.log('aus')
+        } else{
+            sammelnFormSwitch.classList.add('active')
+            localStorage.setItem('sammeln','true')    
+            console.log('an')
+        }
+
+    })
+
+    sammelnFormSwitch.appendChild(sammelnFormSwitchButton)
+
+    sammelnSwitchOption.appendChild(sammelnSwitchOptionTitle)
+    sammelnSwitchOption.appendChild(sammelnSwitchOptionText)
+    sammelnSwitchOption.appendChild(sammelnFormSwitch)
+
+    sammelnFormItem.appendChild(sammelnInput)
+    sammelnFormItem.appendChild(sammelnSwitchOption)
+
+    sammelnFormRow.appendChild(sammelnFormItem)
+    //ENDE EintsllungsItem
+
+
     //Alles zusammenwürfeln
 
     boxInhalt.appendChild(vidStatFormRow)
     boxInhalt.appendChild(kanalStatFormRow)
     boxInhalt.appendChild(topFormRow)
     boxInhalt.appendChild(boostFormRow)
+    boxInhalt.appendChild(sammelnFormRow)
 
     box.appendChild(boxTitel)
     box.appendChild(boxInhalt)
