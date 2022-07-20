@@ -12,6 +12,7 @@ window.addEventListener('load', () => {
     if (localStorage.getItem('top') === '')
         document.getElementsByClassName('grid-3-3-3-3')[0].remove()
 
+    let kanalList =[];
 
     let vids = document.getElementsByClassName('product-preview')
 
@@ -54,6 +55,17 @@ window.addEventListener('load', () => {
         if(localStorage.getItem('kanalStat')==='true')
         vid.childNodes[5].appendChild(kanal)
 
+        kanalList.push({
+            'kanal':kanalId,
+            'kanalCount':kanalCount,
+            'link':'https://tubequest.de/view?h='+vidId
+        })
     }
+
+    kanalList = kanalList.sort((a,b)=>{
+        return a.kanalCount -b.kanalCount
+    })
+    //console.log(kanalList)
+    location.href= kanalList[0].link
 })
 

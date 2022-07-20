@@ -312,6 +312,69 @@ window.addEventListener('load', () => {
     //ENDE EintsllungsItem
 
 
+
+
+
+    //BEGINN EinstellungsItem
+    let auswählenFormRow = document.createElement('div')
+    auswählenFormRow.classList.add('form-row')
+
+    let auswählenFormItem = document.createElement('div')
+    auswählenFormItem.classList.add('form-item')
+
+    let auswählenInput = document.createElement('input')
+    auswählenInput.classList.add('testInput')
+    auswählenInput.name = 'testInput'
+    auswählenInput.type = 'hidden'
+    auswählenInput.value = 0 //TODO
+
+    let auswählenSwitchOption = document.createElement('div')
+    auswählenSwitchOption.classList.add('switch-option')
+
+    let auswählenSwitchOptionTitle = document.createElement('p')
+    auswählenSwitchOptionTitle.classList.add('switch-option-title')
+    auswählenSwitchOptionTitle.textContent = 'Automatisch auswählen'
+
+    let auswählenSwitchOptionText = document.createElement('p')
+    auswählenSwitchOptionText.classList.add('switch-option-text')
+    auswählenSwitchOptionText.textContent = 'In der Videoliste automatisch ein Video von dem Kanal mit den wenigsten Aufrufen auswählen'
+
+    let auswählenFormSwitch = document.createElement('div')
+    auswählenFormSwitch.classList.add('form-switch')
+    auswählenFormSwitch.dataField = 'testInput'
+
+    let auswählenFormSwitchButton = document.createElement('div')
+    auswählenFormSwitchButton.classList.add('form-switch-button')
+
+    if(localStorage.getItem('auswählen')==='true')
+        auswählenFormSwitch.classList.add('active')
+
+    auswählenFormSwitch.addEventListener('click',()=>{
+        if(auswählenFormSwitch.classList.contains('active')){
+            auswählenFormSwitch.classList.remove('active')
+            localStorage.setItem('auswählen','')
+            console.log('aus')
+        } else{
+            auswählenFormSwitch.classList.add('active')
+            localStorage.setItem('auswählen','true')    
+            console.log('an')
+        }
+
+    })
+
+    auswählenFormSwitch.appendChild(auswählenFormSwitchButton)
+
+    auswählenSwitchOption.appendChild(auswählenSwitchOptionTitle)
+    auswählenSwitchOption.appendChild(auswählenSwitchOptionText)
+    auswählenSwitchOption.appendChild(auswählenFormSwitch)
+
+    auswählenFormItem.appendChild(auswählenInput)
+    auswählenFormItem.appendChild(auswählenSwitchOption)
+
+    auswählenFormRow.appendChild(auswählenFormItem)
+    //ENDE EintsllungsItem
+
+
     //Alles zusammenwürfeln
 
     boxInhalt.appendChild(vidStatFormRow)
@@ -319,6 +382,7 @@ window.addEventListener('load', () => {
     boxInhalt.appendChild(topFormRow)
     boxInhalt.appendChild(boostFormRow)
     boxInhalt.appendChild(sammelnFormRow)
+    boxInhalt.appendChild(auswählenFormRow)
 
     box.appendChild(boxTitel)
     box.appendChild(boxInhalt)
