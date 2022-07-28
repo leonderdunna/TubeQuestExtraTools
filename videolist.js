@@ -2,17 +2,19 @@ window.addEventListener('load', () => {
 
     if (localStorage.getItem('boost') === '') {
         let boosted = document.getElementsByClassName('boosted')
-   //     console.log(boosted)
-        if (boosted.length == 4)
-            for (let i = 0; i < 4; i++) {
-                boosted[0].remove()
-            }
+        //     console.log(boosted)
+
+        for (let i = 0; boosted.length!=0; i++) {
+            console.log(boosted)
+            boosted[0].remove()
+
+        }
     }
 
     if (localStorage.getItem('top') === '')
         document.getElementsByClassName('grid-3-3-3-3')[0].remove()
 
-    let kanalList =[];
+    let kanalList = [];
 
     let vids = document.getElementsByClassName('product-preview')
 
@@ -52,21 +54,21 @@ window.addEventListener('load', () => {
         kanal.classList.add('gesehen')
         kanal.textContent = kanalCount
 
-        if(localStorage.getItem('kanalStat')==='true')
-        vid.childNodes[5].appendChild(kanal)
+        if (localStorage.getItem('kanalStat') === 'true')
+            vid.childNodes[5].appendChild(kanal)
 
         kanalList.push({
-            'kanal':kanalId,
-            'kanalCount':kanalCount,
-            'link':'https://tubequest.de/view?h='+vidId
+            'kanal': kanalId,
+            'kanalCount': kanalCount,
+            'link': 'https://tubequest.de/view?h=' + vidId
         })
     }
 
-    kanalList = kanalList.sort((a,b)=>{
-        return a.kanalCount -b.kanalCount
+    kanalList = kanalList.sort((a, b) => {
+        return a.kanalCount - b.kanalCount
     })
     //console.log(kanalList)
-    if(localStorage.getItem('auswählen'))
-    location.href= kanalList[0].link
+    if (localStorage.getItem('auswählen'))
+        location.href = kanalList[0].link
 })
 

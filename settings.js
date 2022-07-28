@@ -376,6 +376,71 @@ window.addEventListener('load', () => {
     //ENDE EintsllungsItem
 
 
+
+    //BEGINN EinstellungsItem
+    let autostartFormRow = document.createElement('div')
+    autostartFormRow.classList.add('form-row')
+
+    let autostartFormItem = document.createElement('div')
+    autostartFormItem.classList.add('form-item')
+
+    let autostartInput = document.createElement('input')
+    autostartInput.classList.add('testInput')
+    autostartInput.name = 'testInput'
+    autostartInput.type = 'hidden'
+    autostartInput.value = 0 //TODO
+
+    let autostartSwitchOption = document.createElement('div')
+    autostartSwitchOption.classList.add('switch-option')
+
+    let autostartSwitchOptionTitle = document.createElement('p')
+    autostartSwitchOptionTitle.classList.add('switch-option-title')
+    autostartSwitchOptionTitle.textContent = 'Benachrrichtigung'
+
+    let autostartSwitchOptionText = document.createElement('p')
+    autostartSwitchOptionText.classList.add('switch-option-text')
+    autostartSwitchOptionText.textContent = 
+    'Push Benachrrichtigung an den Browser und eine GET Request an "https://localhost:8080" senden, wenn ein Video bereit ist'
+
+    let autostartFormSwitch = document.createElement('div')
+    autostartFormSwitch.classList.add('form-switch')
+    autostartFormSwitch.dataField = 'testInput'
+
+    let autostartFormSwitchButton = document.createElement('div')
+    autostartFormSwitchButton.classList.add('form-switch-button')
+
+    if(localStorage.getItem('autostart')==='true')
+        autostartFormSwitch.classList.add('active')
+
+    autostartFormSwitch.addEventListener('click',()=>{
+        if(autostartFormSwitch.classList.contains('active')){
+            autostartFormSwitch.classList.remove('active')
+            localStorage.setItem('autostart','')
+            console.log('aus')
+        } else{
+            autostartFormSwitch.classList.add('active')
+            localStorage.setItem('autostart','true')    
+            console.log('an')
+        }
+
+    })
+
+    autostartFormSwitch.appendChild(autostartFormSwitchButton)
+
+    autostartSwitchOption.appendChild(autostartSwitchOptionTitle)
+    autostartSwitchOption.appendChild(autostartSwitchOptionText)
+    autostartSwitchOption.appendChild(autostartFormSwitch)
+
+    autostartFormItem.appendChild(autostartInput)
+    autostartFormItem.appendChild(autostartSwitchOption)
+
+    autostartFormRow.appendChild(autostartFormItem)
+    //ENDE EintsllungsItem
+
+
+
+
+
     //Alles zusammenwürfeln
 
     boxInhalt.appendChild(vidStatFormRow)
@@ -383,6 +448,7 @@ window.addEventListener('load', () => {
     boxInhalt.appendChild(topFormRow)
     boxInhalt.appendChild(boostFormRow)
     boxInhalt.appendChild(sammelnFormRow)
+    boxInhalt.appendChild(autostartFormRow)
     boxInhalt.appendChild(auswählenFormRow)
 
     box.appendChild(boxTitel)
