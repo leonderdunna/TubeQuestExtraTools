@@ -31,20 +31,20 @@ window.addEventListener('load', () => {
                 if (document.querySelectorAll('h2').length > 0) {
                     document.querySelector('.content-grid').remove()
                 }
-                if((localStorage.getItem('autostart')))
-                fetch('http://localhost:8080/').then((result) => {
-                    console.log(result)
-                })
+                if ((localStorage.getItem('autostart')))
+                    fetch('http://localhost:8080/').then((result) => {
+                        console.log(result)
+                    })
             }
         }, 8000)
 
 
-    if (localStorage.getItem('autostart'))
-
+    if (localStorage.getItem('autostart')) {
+        let länge = document.querySelector('.timer').textContent;
         new Notification('TubeQuest', {
-            body: 'Ein neues Video kann nun angesehen werden :)'
+            body: `Ein neues Video (${länge} min) kann nun angesehen werden :)`
         });
-
+    }
     if (wiederholung)
         return
 
