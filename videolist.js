@@ -1,16 +1,20 @@
 window.addEventListener('load', () => {
 
+
+    //Geboostete ausblenden
     if (localStorage.getItem('boost') === '') {
         let boosted = document.getElementsByClassName('boosted')
         //     console.log(boosted)
 
-        for (let i = 0; boosted.length!=0; i++) {
+        for (let i = 0; boosted.length != 0; i++) {
             console.log(boosted)
             boosted[0].remove()
 
         }
     }
 
+
+    //Top 3 ausblenden
     if (localStorage.getItem('top') === '')
         document.getElementsByClassName('grid-3-3-3-3')[0].remove()
 
@@ -18,8 +22,24 @@ window.addEventListener('load', () => {
 
     let vids = document.getElementsByClassName('product-preview')
 
+    let kanalIDs = [];
+    let vidIDs = [];
+
+    //aktionen für jedes video
     for (let vid of vids) {
         let vidId = vid.childNodes[1].href.split('=')[1]
+        vidIDs.push(vidId)
+
+        let kanalId = vid.childNodes[5].childNodes[1].childNodes[1].href.split('=')[1]
+        kanalIDs.push(kanalId)
+
+        let kanalName = vid.childNodes[5].childNodes[1].childNodes[5].textContent
+        localStorage.setItem(kanalId + 'name', kanalName)
+
+        let vidName = vid.childNodes[3].childNodes[3].childNodes[0].textContent
+        localStorage.setItem(vidId + 'name', vidName)
+        localStorage.setItem(vidId + 'kanal', kanalId)
+
         let vidCount;
         //   console.log(vidId)
 
@@ -28,7 +48,6 @@ window.addEventListener('load', () => {
         else
             vidCount = localStorage.getItem(vidId)
 
-        let kanalId = vid.childNodes[5].childNodes[1].childNodes[1].href.split('=')[1]
 
         let kanalCount;
 
@@ -36,8 +55,6 @@ window.addEventListener('load', () => {
             kanalCount = 0
         else
             kanalCount = localStorage.getItem(kanalId)
-
-        //  let kanalCount=
 
 
         let p = document.createElement('p')
@@ -60,15 +77,41 @@ window.addEventListener('load', () => {
         kanalList.push({
             'kanal': kanalId,
             'kanalCount': kanalCount,
-            'link': 'https://tubequest.de/view?h=' + vidId
+            'vidCount': vidCount,
+            'link': 'https://tubequest.de/view?h=' + vidId,
+            'id': vidId
         })
     }
 
-    kanalList = kanalList.sort((a, b) => {
+    kanalList = kanalList.filter(
+        e=>{
+            let blockedVideos =JSON.parse( localStorage.getItem('blockedVideos')||'[]')
+            return !blockedVideos.includes(e.id)
+        }
+    ).sort((a, b) => {
+        if (a.kanalCount === b.kanalCount)
+            return a.vidCount - b.vidCount;
         return a.kanalCount - b.kanalCount
     })
+
+
+    //kanalListe und vid liste im speicher aktualisieren
+    {
+        kanalIDs.push(...JSON.parse(localStorage.getItem('kanalIDs') || '[]'))
+        vidIDs.push(...JSON.parse(localStorage.getItem('vidIDs') || '[]'))
+
+        kanalIDs = [...new Set(kanalIDs)]
+        vidIDs = [...new Set(vidIDs)];
+
+        localStorage.setItem('kanalIDs', JSON.stringify(kanalIDs))
+        localStorage.setItem('vidIDs', JSON.stringify(vidIDs))
+    }
+
+
     //console.log(kanalList)
     if (localStorage.getItem('auswählen'))
         location.href = kanalList[0].link
+
+
 })
 

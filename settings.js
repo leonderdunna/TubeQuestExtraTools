@@ -2,9 +2,10 @@ window.addEventListener('load', () => {
     let box = document.createElement('div')
     box.classList.add('widget-box')
 
-    let boxTitel = document.createElement('p')
+    let boxTitel = document.createElement('a')
     boxTitel.classList.add('widget-box-title')
     boxTitel.textContent = 'Extra Tools'
+    boxTitel.href='https://tubequest.de/extratools';
 
     let boxInhalt = document.createElement('div')
     boxInhalt.classList.add('widget-box-content')

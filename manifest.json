@@ -1,40 +1,58 @@
 {
-    "name": "TubeQuest Extra Tools",
-    "version": "1.0",
-    "manifest_version": 3,
-    "background": {},
-    "action": {},
-    "content_scripts": [
-        {
-            "matches": [
-                "http://tubequest.de/videoList",
-                "https://tubequest.de/videoList"
-            ],
-            "js": [
-                "videolist.js"
-            ],
-            "css":["main.css"]
-        },
-        {
-            "matches": [
-                "http://tubequest.de/view*",
-                "https://tubequest.de/view*"
-            ],
-            "js": [
-                "video.js"
-            ],
-            "css":["main.css"]
-        },
-          {
-            "matches": [
-                "https://tubequest.de/hub-account-setup",
-                "https://tubequest.de/hub-account-setup"
-            ],
-            "js": [
-                "settings.js"
-            ],
-            "css":["main.css"]
-        }
-        
-    ]
+  "name": "TubeQuest Extra Tools",
+  "version": "1.0",
+  "manifest_version": 3,
+  "background": {},
+  "action": {},
+  "content_scripts": [
+    {
+      "matches": [
+        "http://tubequest.de/videoList",
+        "https://tubequest.de/videoList"
+      ],
+      "js": [
+        "videolist.js"
+      ],
+      "css": [
+        "main.css"
+      ]
+    },
+    {
+      "matches": [
+        "http://tubequest.de/view*",
+        "https://tubequest.de/view*"
+      ],
+      "js": [
+        "video.js"
+      ],
+      "css": [
+        "main.css"
+      ]
+    },
+    {
+      "matches": [
+        "https://tubequest.de/hub-account-setup",
+        "https://tubequest.de/hub-account-setup"
+      ],
+      "js": [
+        "settings.js"
+      ],
+      "css": [
+        "main.css"
+      ]
+    },
+    {
+      "matches": [
+        "http://tubequest.de/extratools*",
+        "https://tubequest.de/extratools*"
+      ],
+      "js": [
+        "./index/index.js"
+      ],
+      "css": [
+        "./index/index.css"
+      ]
+
+    }
+  ]
 }

@@ -3,17 +3,30 @@ let wiederholung = false;
 if (localStorage.getItem(vid) === null) {
     localStorage.setItem(vid, '1')
     localStorage.setItem(vid + 'zuletztGesehen', Date.now())
-}
-else {
+} else {
     vidcount = localStorage.getItem(vid) - 0
     if ((localStorage.getItem(vid + 'zuletztGesehen') - 0) < (Date.now() - 86400000)) {
         localStorage.setItem(vid + 'zuletztGesehen', Date.now())
         localStorage.setItem(vid, ++vidcount)
-    }
-    else {
+    } else {
         wiederholung = true
     }
 }
+
+function blockVideo() {
+    let blockedVideos = JSON.parse(localStorage.getItem('blockedVideos') || '[]')
+    blockedVideos.push(vid)
+    blockedVideos = [...new Set(blockedVideos)]
+    localStorage.setItem('blockedVideos', JSON.stringify(blockedVideos))
+    console.log(blockedVideos)
+    blockVideoButton.style.display = 'none';
+}
+
+let blockVideoButton = document.createElement("button")
+blockVideoButton.textContent = 'Video blockieren'
+blockVideoButton.addEventListener('click', blockVideo)
+blockVideoButton.classList.add('button')
+blockVideoButton.classList.add('secondary')
 
 window.addEventListener('load', () => {
     if (localStorage.getItem('sammeln') === 'true')
@@ -45,17 +58,22 @@ window.addEventListener('load', () => {
             body: `Ein neues Video (${länge} min) kann nun angesehen werden :)`
         });
     }
-    if (wiederholung)
-        return
 
-    kanal = document.querySelector('a.button.small.twitch').href.split('=')[1]
 
-    if (localStorage.getItem(kanal) === null)
-        localStorage.setItem(kanal, '1')
-    else {
-        kanalcount = localStorage.getItem(kanal) - 0
-        localStorage.setItem(kanal, ++kanalcount)
+    document.querySelector('.stream-box.big .achievement-box').appendChild(blockVideoButton)
+
+
+    if (!wiederholung) {
+
+        kanal = document.querySelector('a.button.small.twitch').href.split('=')[1]
+
+        if (localStorage.getItem(kanal) === null)
+            localStorage.setItem(kanal, '1')
+        else {
+            kanalcount = localStorage.getItem(kanal) - 0
+            localStorage.setItem(kanal, ++kanalcount)
+        }
+
     }
-
 
 })
