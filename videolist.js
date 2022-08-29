@@ -4,21 +4,28 @@ window.addEventListener('load', () => {
         //Geboostete ausblenden
         if (localStorage.getItem('boost') === 'false') {
             console.log(localStorage.getItem('boost'))
-        }
-        let boosted = document.getElementsByClassName('boosted')
-        //     console.log(boosted)
 
-        for (let i = 0; boosted.length != 0; i++) {
-            console.log(boosted)
-            boosted[0].remove()
+            let boosted = document.getElementsByClassName('boosted')
+            //     console.log(boosted)
 
+            for (let i = 0; boosted.length != 0; i++) {
+                console.log(boosted)
+                boosted[0].remove()
+
+            }
         }
+
+        console.log(document.querySelector('.content-grid').firstChild.nextSibling.className)
 
 
 //Top 3 ausblenden
         if (localStorage.getItem('top') === 'false') {
-            document.getElementsByClassName('grid-3-3-3-3')[0].remove()
+            if (document.querySelector('.content-grid').firstChild?.nextSibling.className.includes('grid-3-3-3-3')){
+                console.log(document.querySelector('.content-grid'))
+                document.getElementsByClassName('grid-3-3-3-3')[0].remove()
+            }
         }
+        console.log(document.querySelector('.content-grid'))
         let kanalList = [];
 
         let vids = document.getElementsByClassName('product-preview')
