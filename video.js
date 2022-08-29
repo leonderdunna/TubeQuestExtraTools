@@ -52,7 +52,7 @@ window.addEventListener('load', () => {
         }, 8000)
 
 
-    if (localStorage.getItem('autostart')) {
+    if (localStorage.getItem('notification') === 'true') {
         let länge = document.querySelector('.timer').textContent;
         new Notification('TubeQuest', {
             body: `Ein neues Video (${länge} min) kann nun angesehen werden :)`
