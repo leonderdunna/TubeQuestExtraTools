@@ -94,6 +94,7 @@ function videoListItem(video, blocked = false) {
     count.classList.add('nummer')
     let name = document.createElement('a')
     name.textContent = video.name
+    name.target='second'
     name.classList.add('video-name')
     name.href = 'https://tubequest.de/view?h=' + video.id
     videoDiv.append(name)
@@ -113,6 +114,7 @@ function videoListItem(video, blocked = false) {
     }
     return videoDiv
 }
+
 
 
 let globalStatisticsTitle = document.createElement('h2')
@@ -172,6 +174,19 @@ body.append(blockTitle)
 
 for (let video of blockedVideosList) {
     body.append(videoListItem(video, true))
+}
+
+let nichtZugeordnetTitle = document.createElement('h2')
+nichtZugeordnetTitle.textContent = 'Nichtzugeordnete Videos'
+
+    body.append(nichtZugeordnetTitle)
+
+console.log(videoList)
+
+for(let video of videoList){
+    if(video.kanal === null){
+        body.append(videoListItem(video, false))
+    }
 }
 
 document.title = 'Extra Tools - TubeQuest'

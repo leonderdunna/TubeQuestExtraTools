@@ -59,7 +59,28 @@
         "https://tubequest.de/"
       ],
       "js": [
+        "jquerry.js",
         "start.js"
+      ]
+    },
+    {
+      "matches": [
+        "http://tubequest.de/videoDetails*",
+        "https://tubequest.de/videoDetails*"
+      ],
+      "js": [
+        "jquerry.js",
+        "videoDetails.js"
+      ]
+    },
+    {
+      "matches": [
+        "http://tubequest.de/videos*",
+        "https://tubequest.de/videos"
+      ],
+      "js": [
+        "jquerry.js",
+        "eigeneVideos.js"
       ]
     }
   ]
