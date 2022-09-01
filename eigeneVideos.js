@@ -11,5 +11,8 @@ vids.forEach(vid => {
     if (vidDauer % 60 < 10) {
         dauerMarker.textContent = Math.floor(vidDauer / 60) + ':0' + vidDauer % 60
     }
+    if(vidDauer == null || vidDauer == 0) {
+        dauerMarker.textContent = 'Dauer unbekannt'
+    }
     vid.querySelector('.stream-box-info').append(dauerMarker)
 })
